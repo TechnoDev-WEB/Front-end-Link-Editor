@@ -1,0 +1,281 @@
+
+/*
+ * Front-end Link Editor
+ *
+ * Copyright (C) 2023, by TechnoDev
+ *
+ * Front-end Link Editor is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or any later version.
+ *
+ * Front-end Link Editor is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+@font-face {
+    font-family: 'Poppins', sans-serif;
+    src: url('../assets/fonts/Poppins-Regular.ttf') format('ttf');
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+.fle-modal label,
+.fle-modal .fle-form__title, 
+.fle-modal .fle-link_field,
+.fle-modal #fle-link_button,
+.fle-modal .fle-form__show-message,
+.fle-modal .fle-form__show-message{
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+}
+
+.fle-overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    z-index: 999;
+}
+
+.fle-modal .fle-form__wrapper {
+    position: fixed;
+    width: 100%; 
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    display: none;
+    overflow: hidden;
+    max-width: 450px;
+    box-sizing: border-box;
+    background: #fff;
+    padding: 15px 25px;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+}
+
+.fle-form__close {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+}
+
+.fle-form__close:hover{
+    filter: invert(40%) sepia(97%) saturate(60%) hue-rotate(197deg) brightness(110%) contrast(101%);
+}
+
+.fle-modal .fle-form__title{
+    margin-bottom: 10px;
+}
+
+.fle-modal .fle-form__field {
+    display: flex; 
+    flex-direction: column;
+    position: relative;
+    margin-bottom: 10px !important;
+}
+
+.fle-modal .fle-form__field label, 
+.fle-modal .fle-form__title {
+    color: #28303D;
+    font-weight: 500;
+}
+
+.fle-modal .fle-form__field input{
+    height: 40px !important;
+    font-size: 16px;
+    border: 1.5px solid #141a24 !important;
+    padding: 0px 10px !important;
+    margin-bottom: 5px !important;
+}
+
+.fle-modal .fle-form__field input:focus {
+    border: 2px solid #7496ca!important;
+    outline: none !important;
+}
+
+.fle-modal .fle-form__checkbox-field {
+    display: flex;
+    margin-bottom: 15px !important;
+    color:#28303D;
+}
+
+
+.fle-modal .fle-form__checkbox-field input#fle-target {
+    width: 20px !important;
+    height: 20px !important;
+    margin-right: 6px !important;
+    border: 2px solid #141a24 !important;
+    background: #fff !important;
+    position: relative !important;
+    -webkit-appearance: none;
+}
+
+.fle-modal .fle-form__checkbox-field input#fle-target:checked{
+    margin-right: 6px !important;
+    border: 2px solid #141a24 !important;
+    background: #fff !important;
+    position: relative !important;
+}
+
+.fle-modal .fle-form__checkbox-field input[type=checkbox]:checked:after {
+    content: "";
+    display: block;
+    left: 5px !important;
+    top: 1px !important;
+    position: absolute;
+    width: 6px;
+    height: 12px;
+    border: 3px solid #141a24;
+    border-top: 0;
+    border-left: 0;
+    transform: rotate(30deg);
+}
+
+.fle-modal .fle-form__checkbox-field input[type=checkbox]:checked {
+    background-color: #fff !important;
+}
+
+.fle-modal .fle-form__checkbox-field input:focus {
+    outline: none !important;
+}
+
+.fle-modal .fle-form__checkbox-field label {
+    margin: 0px !important;
+    bottom: 0px;
+    line-height: 20px;
+}
+
+/* Edit button - START */
+.fle-modal .fle-edit-btn__wrapper {
+    display:flex;
+    position: absolute;
+    z-index: 99;
+    opacity: 0;
+}
+
+.fle-modal .fle-edit-btn {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 35px;
+    height: 35px;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid black;
+    cursor:pointer;
+}
+
+.fle-modal .fle-edit-btn__wrapper.show{
+    opacity: 1;
+    transition: opacity 1s;
+}
+
+.fle-modal .fle-edit-btn img {
+   width: 18px;
+}
+
+.fle-modal .fle-edit-btn img:hover {
+    filter: invert(40%) sepia(97%) saturate(2144%) hue-rotate(165deg) brightness(101%) contrast(101%);
+}
+
+.flex-row {
+    flex-direction: row !important;
+    align-items: center;
+}
+
+.fle-modal #fle-link_button {
+    width: 100px;
+    height: 50px;
+    padding: 5px !important;
+    background-color: #28303D;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.fle-modal #fle-link_button:hover {
+    background-color:#495971;
+}
+
+.fle-modal .fle-form__wrapper .fle-loader {
+    display: none;
+    position: absolute;
+    border: none;
+    border-radius: 50%;
+    border-top: 3px solid #495971;
+    width: 20px;
+    height: 20px;
+    -webkit-animation: spin 0.1s linear infinite; 
+    animation: spin 0.6s linear infinite;
+    left: 27%;
+}
+
+@-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.fle-modal .has-error {
+    color:rgb(253 76 76) !important;
+    font-weight: 600 !important;
+}
+
+.fle-modal .has-error input {
+    border: 1px solid rgb(253 76 76)!important;
+}
+
+.fle-modal .has-error label:first-of-type,
+.fle-modal .error {
+    color:rgb(253 76 76) !important;
+}
+
+.fle-modal .error{
+    margin-bottom: 0px;
+}
+
+.fle-modal .fle-form__show-message {
+    display: none;
+    align-items: center;
+    margin: 6px 0;
+    padding: 6px;
+    margin-bottom: 10px !important;
+    border-radius: 3px 3px 3px 3px;
+}
+
+.fle-modal .fle-success {
+    color: #270;
+    background-color: #DFF2BF;
+}
+
+.fle-modal .fle-error {
+    color: #D8000C;
+    background-color: #FFBABA;
+}
+
+.fle-notice-error {
+    position: relative;
+    padding: 1px;
+    margin: 5px 0;
+    border-left: 4px solid red;
+}
+
+
+
